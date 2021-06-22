@@ -31,6 +31,14 @@ function DetailsScreen({navigation}) {
     </View>
   );
 }
+
+function FavoritesScreen({navigation}) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+    </View>
+  )
+}
 /**
  * Création des bottom tabs
  */
@@ -40,8 +48,8 @@ function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={DetailsScreen} />
-      <Tab.Screen name="Favorites" component={DetailsScreen}/>
+      <Tab.Screen name="Details" component={DetailsScreen} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen}/>
     </Tab.Navigator>
   );
 }
