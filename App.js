@@ -7,6 +7,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 function HomeScreen({ navigation }) {
+  const [apidata, setApidata] = useState([])
+  useEffect(()=> {
+    fetch('https://dog.ceo/api/breeds/list/all')
+    .then(response => response.json())
+    .then(response => setApidata(response)).then(()=> console.log(apidata))
+  }, [])
+
+  
 
   return (
 
