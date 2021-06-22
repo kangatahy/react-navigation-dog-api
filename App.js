@@ -3,10 +3,12 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 function HomeScreen({navigation}) {
   return (
+    //sstack navigator
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Voici l'ecran d'accueil</Text>
       <Button
@@ -29,19 +31,40 @@ function DetailsScreen({navigation}) {
     </View>
   );
 }
+/**
+ * Création des bottom tabs
+ */
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Settings" component={DetailsScreen} />
+      <Tab.Screen name="Favorites" component={DetailsScreen}/>
+    </Tab.Navigator>
+  );
+}
+
 
 const Stack = createStackNavigator();
 
-function App() {
+function App({navigate}) {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+    <NavigationContainer >
+      <MyTabs/>
+    </NavigationContainer>
+    
+  );
+}
+
+/**
+ * 
+ * <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+ */
 
 export default App;
 
