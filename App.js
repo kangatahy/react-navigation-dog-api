@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,22 +8,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 function HomeScreen({ navigation }) {
   const [apidata, setApidata] = useState({})
-  useEffect(()=> {
+  useEffect(() => {
     fetch('https://dog.ceo/api/breeds/list/all')
-    .then(response => response.json())
-    .then(response => setApidata(response)).then(()=> console.log(apidata.message))
+      .then(response => response.json())
+      .then(response => setApidata(response)).then(() => console.log(apidata.message))
   }, [])
-
-  
 
   return (
 
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Voici l'ecran d'accueil</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingLeft: 40, paddingTop: 40}}>
+      <SafeAreaView>
+        <FlatList
+        data={Object.entries(apidata.message)}
+        renderItem={({item})=> (<Text>{item}</Text>)}/>
+      </SafeAreaView>
     </View>
   );
 }
