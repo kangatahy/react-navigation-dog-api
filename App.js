@@ -14,12 +14,17 @@ function HomeScreen({ navigation }) {
       .then(response => setApidata(response)).then(() => console.log(apidata.message))
   }, [])
 
+  const DATA = {
+    "khelvin ":[],
+    "angatahy":[]
+  }
+
   return (
 
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingLeft: 40, paddingTop: 40}}>
       <SafeAreaView>
         <FlatList
-        data={Object.entries(apidata.message)}
+        data={Object.entries(DATA)}
         renderItem={({item})=> (<Text>{item}</Text>)}/>
       </SafeAreaView>
     </View>
